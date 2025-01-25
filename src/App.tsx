@@ -469,5 +469,38 @@ function App() {
     </div>
   );
 }
+import express, { Request, Response } from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+
+const app = express();
+app.use(bodyParser.json());
+app.use(cors());
+
+interface ProcessRequest {
+  text: string;
+}
+
+interface ProcessResponse {
+  alert: boolean;
+  message: string;
+}
+
+app.post('/api/process', (req: Request<{}, {}, ProcessRequest>, res: Response<ProcessResponse>) => {
+  const { text } = req.body;
+  let alert = false;
+  let message = '';
+
+  if (text.includes('suspicious')) {
+    alert = true;
+    message = 'Fraudulent text detected: Avoid suspicious links.';
+  }
+
+  res.json({ alert, message });
+});
+
+app.listen(3000, () => {
+  console.log('Web app running on port 3000');
+});
 
 export default App;
