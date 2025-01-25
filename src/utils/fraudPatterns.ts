@@ -13,7 +13,7 @@ export const fraudPatterns = [
     message: 'Request to scan QR code or click links detected! Verify the source before proceeding to the next step.',
   },
   {
-    pattern: /(urgent|immediate|emergency).*(action|attention|response)|(urgent|urgently|right away|immediate|emergency)/i,
+    pattern: /(urgent|immediate|emergency).*(action|attention|response)|(urgent|urgently|right away|immediate|emergency|asap)/i,
     category: 'Urgency',
     risk: 'medium',
     message: 'Urgency tactics detected! Scammers often create false sense of urgency.',
